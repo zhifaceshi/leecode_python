@@ -73,37 +73,68 @@ print()
 
 
 #########################################################################
+#https://leetcode-cn.com/problems/delete-node-in-a-bst/solution/yong-qian-qu-huo-zhe-hou-ji-jie-dian-zi-shu-dai-ti/
 
-def num2char(num):
-    return chr( num + ord('a'))
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#
+#
+# # 方法1：用左子树中最大结点的代替被删除结点
+#
+#
+# class Solution:
+#     def deleteNode(self, root, key):
+#         if root is None:
+#             return None
+#
+#         if key < root.val:
+#             root.left = self.deleteNode(root.left, key)
+#             return root
+#
+#         if key > root.val:
+#             root.right = self.deleteNode(root.right, key)
+#             return root
+#
+#         if root.left is None:
+#             new_root = root.right
+#             root.right = None
+#             return new_root
+#
+#         if root.right is None:
+#             new_root = root.left
+#             root.left = None
+#             return new_root
+#
+#         # 找到左子树中最大的
+#         predecessor = self.__maximum(root.left)
+#         predecessor_copy = TreeNode(predecessor.val)
+#         predecessor_copy.left = self.__remove_max(root.left)
+#         predecessor_copy.right = root.right
+#         root.left = None
+#         root.right = None
+#         return predecessor_copy
+#
+#     def __remove_max(self, node):
+#         if node.right is None:
+#             new_root = node.left
+#             node.left = None
+#             return new_root
+#         node.right = self.__remove_max(node.right)
+#         return node
+#
+#     def __maximum(self, node):
+#         while node.right:
+#             node = node.right
+#         return node
+
 class Solution:
-    def smallestFromLeaf(self, root: TreeNode) -> str:
-        ret = []
-        self.dfs(root, [], ret)
-        # print(ret)
-        ret = sorted(ret)
-        if len(ret) != 0:
-            return ret[0]
-
-    def dfs(self, root, state_lst, ret):
+    def countNodes(self, root: TreeNode) -> int:
         if root is None:
-            return
-        if root.left is None and root.right is None:
-            t = state_lst + [num2char(root.val)]
-            ret.append("".join(t[::-1]))
-            return
-        self.dfs(root.left, state_lst + [num2char(root.val), ], ret)
-        self.dfs(root.right, state_lst + [num2char(root.val), ], ret)
-
-
-
+            return 0
+        return self.countNodes(root.left) + self.countNodes(root.right) + 1
 #########################################################################
 
-build_obj = Codec()
-# head = build_obj.deserialize([0,1,3,None,None,4,None,None, 2,3,None,None,4])
-head = build_obj.deserialize([0, None, 1])
-# head = build_obj.deserialize([3,1,None,2,4])
-preorder(head)
-print()
-
-print(Solution().smallestFromLeaf(head))
+print(Solution().countNodes(head))
