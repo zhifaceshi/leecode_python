@@ -1,4 +1,5 @@
-def num2char(num):
-    return chr( num + ord('a'))
 
-print(num2char(25))
+
+
+s = "abc".index('d')
+print(s)

@@ -14,7 +14,7 @@ res = 1e14
 while r < len(s):
     # 先添加到窗口中
     window.append(s[r])
-    # r指针右移
+    # 再r指针右移，顺序不要颠倒
     r += 1
     # 如果window满足条件
     while f(window):
