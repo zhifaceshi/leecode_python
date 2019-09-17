@@ -81,24 +81,31 @@ print()
 #         self.left = None
 #         self.right = None
 
+# 深度优先搜索，通过
+# class Solution:
+#     def findBottomLeftValue(self, root: TreeNode) -> int:
+#         return self.dfs(root)[0]
+#     def dfs(self, root):
+#         if root is None:
+#             return [None, 0]
+#         if root.left is None and root.right is None:
+#             return [root, 1]
+#         leftnode, leftval = self.dfs(root.left)
+#         rightnode, rightval = self.dfs(root.right)
+#
+#         if leftval >= rightval:
+#             return [leftnode, leftval + 1]
+#         else:
+#             return [rightnode, rightval + 1]
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-
+# 广度优先搜索
 class Solution:
-    def largestValues(self, root: TreeNode) -> List[int]:
-        if root is None:
-            return []
+    def findBottomLeftValue(self, root: TreeNode) -> int:
         queue = [root, ]
-        ans = []
-        while len(queue)!= 0:
+        r = None
+        while len(queue) != 0:
             size = len(queue)
-            ans.append(max([w.val for w in queue]))
+            r = queue[0].val
             while size != 0:
                 size -= 1
                 cur = queue.pop(0)
@@ -106,7 +113,10 @@ class Solution:
                     queue.append(cur.left)
                 if cur.right != None:
                     queue.append(cur.right)
-        return ans
+        return r
+
+
+
 
 
 
@@ -114,10 +124,9 @@ class Solution:
 
 build_obj = Codec()
 # head = build_obj.deserialize([0,1,3,None,None,4,None,None, 2,3,None,None,4])
-head = build_obj.deserialize([1, 3,5,None,None,3,None,None,2,None,9])
+head = build_obj.deserialize([1, None, 2, 3, None])
 # head = build_obj.deserialize([3,1,None,2,4])
 preorder(head)
 print()
 
-print(Solution().largestValues(head))
-
+print(Solution().inorderTraversal(head))

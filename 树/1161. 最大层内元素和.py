@@ -89,35 +89,37 @@ print()
 #         self.left = None
 #         self.right = None
 
-
 class Solution:
-    def largestValues(self, root: TreeNode) -> List[int]:
-        if root is None:
-            return []
+    def maxLevelSum(self, root: TreeNode) -> int:
         queue = [root, ]
-        ans = []
-        while len(queue)!= 0:
+        maxcount = -1e14
+        maxindex = 1
+        index = 0
+        while len(queue) != 0:
             size = len(queue)
-            ans.append(max([w.val for w in queue]))
+            index += 1
+            value = sum([node.val for node in queue])
+            if value > maxcount:
+                maxcount = value
+                maxindex = index
             while size != 0:
                 size -= 1
                 cur = queue.pop(0)
-                if cur.left != None:
+                if cur.left is not None:
                     queue.append(cur.left)
-                if cur.right != None:
+                if cur.right is not None:
                     queue.append(cur.right)
-        return ans
-
+        return maxindex
 
 
 #########################################################################
 
 build_obj = Codec()
 # head = build_obj.deserialize([0,1,3,None,None,4,None,None, 2,3,None,None,4])
-head = build_obj.deserialize([1, 3,5,None,None,3,None,None,2,None,9])
+head = build_obj.deserialize([1, 7, 0, 7, -8])
 # head = build_obj.deserialize([3,1,None,2,4])
 preorder(head)
 print()
 
-print(Solution().largestValues(head))
+print(Solution().maxLevelSum(head))
 

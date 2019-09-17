@@ -4,6 +4,7 @@ import math
 import re
 import sys
 from typing import List
+
 MAXINF = float('inf')
 MININF = -float('inf')
 
@@ -13,18 +14,23 @@ class TreeNode(object):
         self.val = x
         self.left = None
         self.right = None
+
     def __repr__(self):
         return str(self.val)
+
+
 def preorder(root):
     if root is None:
         return
     else:
-        print(root.val ,end='\t')
+        print(root.val, end='\t')
         preorder(root.left)
         preorder(root.right)
 
+
 class Codec:
     head = None
+
     def serialize(self, root):
         """Encodes a tree to a single string.
 
@@ -49,7 +55,8 @@ class Codec:
         Codec.head = None
         self._deserialize(data)
         return Codec.head
-    def _deserialize(self,data):
+
+    def _deserialize(self, data):
         if len(data) == 0:
             return None
         else:
@@ -63,10 +70,11 @@ class Codec:
             node.right = self._deserialize(data)
             return node
 
+
 # [1, 2, None, None, 3, 4, None, None, 5, None, None]
 # 先根遍历的编码方式
 build_obj = Codec()
-head = build_obj.deserialize([5,3,2,None,None,4,None,None,6,None,7])
+head = build_obj.deserialize([5, 3, 2, None, None, 4, None, None, 6, None, 7])
 # head = build_obj.deserialize([3,1,None,2,4])
 preorder(head)
 print()
@@ -81,43 +89,35 @@ print()
 #         self.left = None
 #         self.right = None
 
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-
 class Solution:
-    def largestValues(self, root: TreeNode) -> List[int]:
-        if root is None:
-            return []
-        queue = [root, ]
-        ans = []
-        while len(queue)!= 0:
-            size = len(queue)
-            ans.append(max([w.val for w in queue]))
-            while size != 0:
-                size -= 1
-                cur = queue.pop(0)
-                if cur.left != None:
-                    queue.append(cur.left)
-                if cur.right != None:
-                    queue.append(cur.right)
-        return ans
+    def pruneTree(self, root: TreeNode) -> TreeNode:
+        return self.dfs(root)
 
+    def dfs(self, root):
+        if root is None:
+            return None
+
+        if root.val == 0 and root.left is None and root.right is None:
+            return None
+
+        left = self.dfs(root.left)
+        right = self.dfs(root.right)
+
+        if left is None and right is None and root.val == 0:
+            return None
+
+        root.left = left
+        root.right = right
+        return root
 
 
 #########################################################################
 
 build_obj = Codec()
 # head = build_obj.deserialize([0,1,3,None,None,4,None,None, 2,3,None,None,4])
-head = build_obj.deserialize([1, 3,5,None,None,3,None,None,2,None,9])
+head = build_obj.deserialize([0, None, 1])
 # head = build_obj.deserialize([3,1,None,2,4])
 preorder(head)
 print()
 
-print(Solution().largestValues(head))
-
+print(Solution().smallestFromLeaf(head))

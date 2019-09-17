@@ -1,5 +1,5 @@
 
+def convert(c):
+    return ord(c)
 
-
-s = "abc".index('d')
-print(s)
+print(convert('s'))

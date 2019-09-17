@@ -73,33 +73,43 @@ print()
 
 
 #########################################################################
-class Tree():
-    def __init__(self, val):
-        self.val = val
-        self.children = []
 
-def build_tree(nums):
-    dct = collections.defaultdict(list)
-    for a, b in nums:
-        dct[a].append(b)
-    return dct
-
-def dfs(i, dct):
-    if i not in dct:
-        return {i : 1}
-    else:
-        for c in dct[i]:
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        stack = []
+        ans = []
+        r = None
+        while root or len(stack) != 0:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                root = stack[-1]
+                if root.right and root.right != r:
+                    root = root.right
+                else:
+                    stack.pop()
+                    ans.append(root.val)
+                    r = root
+                    root = None
+        return ans
 
 
 #########################################################################
 
 build_obj = Codec()
 # head = build_obj.deserialize([0,1,3,None,None,4,None,None, 2,3,None,None,4])
-head = build_obj.deserialize([0, None, 1])
+head = build_obj.deserialize([1, None, 2, 3, None])
 # head = build_obj.deserialize([3,1,None,2,4])
 preorder(head)
 print()
 
-print(Solution().smallestFromLeaf(head))
+print(Solution().inorderTraversal(head))
