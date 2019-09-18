@@ -37,8 +37,10 @@
 | [931. 下降路径最小和](https://leetcode-cn.com/problems/minimum-falling-path-sum/) | 中等 | 很普通的动态规划~ |
 | [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) | 中等 | 一次ac |
 | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) | 中等 | 一次ac |
+| [123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/) | 中等 | 注意要放在买入，认为是一次交易，则 dp[k][i-1][1] + prices[i-1] 表示第k次买入再卖出，因此是正确的。 |
+| [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | 中等 | 和上一题一样，要以买入为准，这样卖出操作才会恰好是当前的结果。 |
+| [486. 预测赢家](https://leetcode-cn.com/problems/predict-the-winner/) | 中等 | 使用了记忆化递归来实现，注意后手要选择 min， 因为对方肯定会最优，留给自己的会是小的那个~！。 |
 | 稍微长一点的文本 | 短文本 | 中等文本 |
-
 
 
 ## 前缀树
@@ -70,6 +72,8 @@
 | [144. 二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/) | 中等 | stack.pop()，而不是stack.pop(0) |
 | [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/) | 中等 | 注意递归，都没有找到，返回None |
 | [515. 在每个树行中找最大值](https://leetcode-cn.com/problems/find-largest-value-in-each-tree-row/) | 中等 | BFS |
+| [226. 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/) | 中等 | 递归与非递归实现。实际上非递归实现，也就是BFS，只是取出节点的时候，将节点左右交换便可。 |
+| [101. 对称二叉树](https://leetcode-cn.com/problems/symmetric-tree/) | 中等 | 递归与非递归的实现。实际上非递归还是使用了BFS，，只是要将None考虑进去。 |
 | 稍微长一点的文本 | 短文本 | 中等文本 |
 
 
@@ -82,6 +86,7 @@
 | [241. 为运算表达式设计优先级](https://leetcode-cn.com/problems/different-ways-to-add-parentheses/) | 中等 | 一次ac |
 | [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) | 中等 | 一次ac |
 | [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/) | 中等 | 一次ac |
+| [638. 大礼包](https://leetcode-cn.com/problems/shopping-offers/) | 中等 | 通过优化，解决。多重背包问题，视作是0/1背包问题就会很慢。 |
 | 稍微长一点的文本 | 短文本 | 中等文本 |
 
 ## 链表
@@ -168,3 +173,4 @@
 + 1020.飞地的数量 深搜超时， 38/58
 + 1043.分隔数组以得到最大和 记忆化递归超时 14 / 52 个通过测试用例
     + 原因是求最大值的时候，要重复计算，这很低效，可以优化。(已通过，使用记忆化递归)
++ 638.大礼包  深搜超时，因为多重背包当成了一重？

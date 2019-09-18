@@ -100,46 +100,24 @@ print()
 #         root.right = left
 #         return root
 
-#递归版本实现
+# 迭代版本，使用层次遍历便可。。。。
 class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
+    def invertTree(self, root: TreeNode) -> TreeNode:
         if root is None:
-            return True
-        return self.dfs(root.left, root.right)
-
-    def dfs(self, nodea, nodeb):
-        if nodea is None and nodeb is None:
-            return True
-        if nodea is None or nodeb is None:
-            return False
-        if nodea.val != nodeb.val:
-            return False
-        a = self.dfs(nodea.left, nodeb.right)
-        b = self.dfs(nodea.right, nodeb.left)
-        return a and b
-
-# 非递归版本实现
-
-class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
+            return root
         queue = [root, ]
         while len(queue) != 0:
             size = len(queue)
-
-            t = []
-            for w in queue:
-                if w: t.append(w.val)
-                else:t.append(None)
-            if t[::-1] != t:
-                return False
             while size != 0:
                 size -= 1
                 cur = queue.pop(0)
-                if cur is None:
-                    continue
-                queue.append(cur.left)
-                queue.append(cur.right)
-        return True
+                cur.left, cur.right = cur.right, cur.left
+                if cur.left is not None:
+                    queue.append(cur.left)
+                if cur.right is not None:
+                    queue.append(cur.right)
+        return root
+
 
 #########################################################################
 
