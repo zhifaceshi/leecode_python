@@ -68,87 +68,38 @@ class Codec:
 build_obj = Codec()
 head = build_obj.deserialize([5,3,2,None,None,4,None,None,6,None,7])
 # head = build_obj.deserialize([3,1,None,2,4])
-preorder(head)
+# preorder(head)
 print()
 
 
 #########################################################################
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-# 递归版本
-# class Solution:
-#     def invertTree(self, root: TreeNode) -> TreeNode:
-#         if root is None:
-#             return root
-#         left = self.invertTree(root.left)
-#         right = self.invertTree(root.right)
-#         root.left = right
-#         root.right = left
-#         return root
-
-#递归版本实现
 class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
+    def rob(self, root: TreeNode) -> int:
+        return max(self.dfs(root))
+
+    def dfs(self, root):
         if root is None:
-            return True
-        return self.dfs(root.left, root.right)
+            # 表示选 表示不选
+            return [0, 0]
 
-    def dfs(self, nodea, nodeb):
-        if nodea is None and nodeb is None:
-            return True
-        if nodea is None or nodeb is None:
-            return False
-        if nodea.val != nodeb.val:
-            return False
-        a = self.dfs(nodea.left, nodeb.right)
-        b = self.dfs(nodea.right, nodeb.left)
-        return a and b
+        left = self.dfs(root.left)
+        right = self.dfs(root.right)
+        val = root.val
+        return [
+            val + left[1] + right[1],
+            max(left) + max(right)
+        ]
 
-# 非递归版本实现
-
-class Solution:
-    def isSymmetric(self, root: TreeNode) -> bool:
-        queue = [root, ]
-        while len(queue) != 0:
-            size = len(queue)
-
-            t = []
-            for w in queue:
-                if w: t.append(w.val)
-                else:t.append(None)
-            if t[::-1] != t:
-                return False
-            while size != 0:
-                size -= 1
-                cur = queue.pop(0)
-                if cur is None:
-                    continue
-                queue.append(cur.left)
-                queue.append(cur.right)
-        return True
 
 #########################################################################
 
 build_obj = Codec()
 # head = build_obj.deserialize([0,1,3,None,None,4,None,None, 2,3,None,None,4])
-head = build_obj.deserialize([1, 3,5,None,None,3,None,None,2,None,9])
+head = build_obj.deserialize([3, 2, None, 3, None, None, 3, None, 1])
 # head = build_obj.deserialize([3,1,None,2,4])
 preorder(head)
 print()
 
-print(Solution().largestValues(head))
+print(Solution().rob(head))
 

@@ -17,6 +17,8 @@
 | ------ | ------ | ------ |
 | [886. 可能的二分法](https://leetcode-cn.com/problems/possible-bipartition/) | 中等 | 1、for i in range(1 开始, ) **2、建立双向映射（题目是无向图），而非单向（这是有向图的解法） for (x, y) in dislikes: graph[x].add(y)\n  graph[y].add(x)** ; |
 | [980. 不同路径 III](https://leetcode-cn.com/problems/unique-paths-iii/) | 中等 | 可以将过去的数据标记为另一个值，表示已经走过了，这样就省略了visited单独用于表示是否已经访问过。会节省很多事。 |
+| [695. 岛屿的最大面积](https://leetcode-cn.com/problems/max-area-of-island/) | 中等 | 将岛屿的参数进行修改，和980的思路类似~此题是走过的路径置为零。 |
+| 稍微长一点的文本 | 短文本 | 中等文本 |
 | 稍微长一点的文本 | 短文本 | 中等文本 |
 
 ## 二分搜索
@@ -74,6 +76,7 @@
 | [515. 在每个树行中找最大值](https://leetcode-cn.com/problems/find-largest-value-in-each-tree-row/) | 中等 | BFS |
 | [226. 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/) | 中等 | 递归与非递归实现。实际上非递归实现，也就是BFS，只是取出节点的时候，将节点左右交换便可。 |
 | [101. 对称二叉树](https://leetcode-cn.com/problems/symmetric-tree/) | 中等 | 递归与非递归的实现。实际上非递归还是使用了BFS，，只是要将None考虑进去。 |
+| [337. 打家劫舍 III](https://leetcode-cn.com/problems/house-robber-iii/) | 中等 | 树和动态规划的结合，注意，当不选的时候，值返回的是 max(left) + max(right)。因为无论是左侧子树还是右侧子树，我们不care它选没选，我们只关心最大值。 |
 | 稍微长一点的文本 | 短文本 | 中等文本 |
 
 
@@ -87,6 +90,7 @@
 | [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii/) | 中等 | 一次ac |
 | [131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/) | 中等 | 一次ac |
 | [638. 大礼包](https://leetcode-cn.com/problems/shopping-offers/) | 中等 | 通过优化，解决。多重背包问题，视作是0/1背包问题就会很慢。 |
+| [526. 优美的排列](https://leetcode-cn.com/problems/beautiful-arrangement/) | 中等 | 一次ac |
 | 稍微长一点的文本 | 短文本 | 中等文本 |
 
 ## 链表
