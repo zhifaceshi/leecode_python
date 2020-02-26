@@ -13,11 +13,13 @@ class ListNode:
         self.next = None
     def __repr__(self):
         return str(self.val)
+
 def showList(node):
     while node != None:
         print(" " + str(node.val), end='')
         node = node.next
     print()
+
 def construct_node(lst):
     head = None
     preNode = None

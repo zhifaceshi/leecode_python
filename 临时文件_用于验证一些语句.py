@@ -1,44 +1,41 @@
-# -*- coding:utf-8 -*-
 
-class Solution():
-    m = {}
-    def cutRope(self, number):
+import lightgbm as lgb
+lgb.LGBMClassifier
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+    def __repr__(self):
+        return str(self.val)
+
+class Solution:
+    # matrix类型为二维列表，需要返回列表
+    def printMatrix(self, matrix):
         # write code here
-        if number == 1:return 1
-        if number == 2:return 1
-        if number == 3:return 2
-        if number in Solution.m:
-            return Solution.m[number]
-        value = []
-        for i in range(1, number + 1):
-            t = i * self.search(number - i)
-            value.append(t)
-        return max(value)
+        for i in range(len(matrix) // 2 + 1):
+            for (n, m) in g(i, len(matrix) - i*2 ):
+                print(matrix[n][m])
 
-    def search(self, n):
-        if n <= 1:
-            return 1
-        if n in Solution.m:
-            return Solution.m[n]
-        value = []
-        for i in range(1, n+1):
-            t = i * self.search(n - i)
-            value.append(t)
-        Solution.m[n] = max(value)
-        return Solution.m[n]
-
-import bisect
-
+def g(i, s):
+    x,y = i,i
+    for a in range(s):
+        yield x, y + a
+    y += s -1
+    for a in range(1, s):
+        yield x + a, y
+    x += s -1
+    for a in range(1, s):
+        yield x, y-a
+    y -= s -1
+    for a in range(1, s-1):
+        yield x-a, y
 
 if __name__ == '__main__':
-    # print(Solution().hasPath("ABCESFCSADEE",3,4,"ABCB"))
-    print(Solution().cutRope(4))
-    from functools import lru_cache
 
-# # ABCB
-# """
-# ABC
-# ESF
-# CSA
-# DEE
-# """
+    m = [
+        [1,2,  3, 4],
+        [5,6,  7, 8],
+        [9,10,11,12],
+        [13,14,15,16]
+    ]
+    Solution().printMatrix(m)

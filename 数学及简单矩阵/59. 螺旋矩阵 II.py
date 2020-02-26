@@ -25,7 +25,6 @@ class Solution(object):
                 count += 1
         return grid
 
-
 def generate_tuple( x, y, n):
     for j in range(n):
         yield x, y + j
